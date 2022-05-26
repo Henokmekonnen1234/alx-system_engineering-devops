@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod ugoa+rwx -R
+chmod 755 -R
