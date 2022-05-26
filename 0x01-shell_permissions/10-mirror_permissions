@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod 730 --reference hello olleh
+chmod olleh hello 
