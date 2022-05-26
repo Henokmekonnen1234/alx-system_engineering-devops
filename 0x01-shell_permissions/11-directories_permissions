@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod ugoa+wx -R
+chmod ugoa+rwx -R
