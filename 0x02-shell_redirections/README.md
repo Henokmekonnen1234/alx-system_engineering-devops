@@ -1,0 +1,1 @@
+this is solution for project on shell redirection
