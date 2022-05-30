@@ -1,2 +1,2 @@
 #!/bin/bash
-11;rgb:ffff/ffff/ffffls -t | head
+ls -t | head
