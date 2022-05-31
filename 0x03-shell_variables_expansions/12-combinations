@@ -1,2 +1,2 @@
 #!/bin/bash
-echo [![oo]] {a..z}{a..z}
+echo [![oo]] "{a..z}{a..z}"\
