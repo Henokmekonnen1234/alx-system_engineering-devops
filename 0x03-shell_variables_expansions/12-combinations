@@ -1,2 +1,2 @@
 #!/bin/bash
-echo {a..z}{a..z} | sed 'oo'
+echo {a..z}{a..z} | awk 'oo'
