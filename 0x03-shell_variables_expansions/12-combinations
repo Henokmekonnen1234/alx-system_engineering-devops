@@ -1,2 +1,2 @@
 #!/bin/bash
-echo {a..z}{a..z} | awk 'oo'
+echo {a..z}{a..z} [! oo]
