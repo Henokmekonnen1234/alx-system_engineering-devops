@@ -1,2 +1,2 @@
 #!/bin/bash
-printf "%s\n" '$' | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+echo "$()" | tr 'n-za-mN-ZA-M' 'a-zA-Z'
