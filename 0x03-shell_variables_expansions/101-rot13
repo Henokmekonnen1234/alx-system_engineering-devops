@@ -1,2 +1,2 @@
 #!/bin/bash
-cat 101-rot13 | tr 'n-za-mN-ZA-M' 'a-zA-Z'
+cat 101-rot13 | | tr 'A-Za-z' 'N-ZA-Mn-za-m'
