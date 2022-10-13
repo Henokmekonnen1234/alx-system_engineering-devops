@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # This script is displaying "Best School" 10 times
+# Shellcheck style wants while loop to finish the job
+
 i="0"
 while [ $i -lt 10 ]; do 
 	echo "Best School"
