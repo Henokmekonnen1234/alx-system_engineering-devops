@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 #print Best School 10 times using until
-
-while true
+i=0
+while [ $i -le 10 ]
 do
-	i=0
 	until (( i>10 ))
 		do
 			echo "Best School"
