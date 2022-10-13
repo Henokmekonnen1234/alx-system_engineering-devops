@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # This script is displaying "Best School" 10 times
-# Shellcheck style wants while loop to finish the job
+# Shellcheck style wants dummy _ variable if not using
 
-i="0"
-while [ $i -lt 10 ]; do 
+for _ in {1..10}
+do
 	echo "Best School"
-	i=$i+1
-	done
+done
+
