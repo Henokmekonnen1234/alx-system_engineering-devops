@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#this commad will print clock hour from 0-12 and
+#minute from 1-59
+min=1
+hr=0
+echo "Hour: $hr"
+while [ $min -le 59 ]
+do
+	echo $min
+	if [ $min -eq 59 ]; then
+
+		if [ $hr -eq 12 ]; then
+			hr=0
+			echo "Hour: $hr"
+		else
+			(( hr += 1 ))
+			echo "Hour: $hr"
+			min=0
+		fi
+	fi
+	(( min += 1 ))
+done
