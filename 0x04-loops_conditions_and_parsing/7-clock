@@ -12,7 +12,6 @@ do
 		if [ $hr -eq 12 ]; then
 			hr=0
 			echo "Hour: $hr"
-			min=0
 		else
 			(( hr += 1 ))
 			echo "Hour: $hr"
