@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#this commad will check file present or not, empty or not
+#  and directory or if it's file
+file="./school"
+if [ -a $file ]; then
+	echo "school file exists"
+	if [ -s $file ]; then
+		echo "school file is not empty"
+	elif [ ! -s $file ]; then
+		echo "school file is empty"
+	elif [ -f $file ]; then
+		echo "school file is a regular file"
+	else
+		:	
+	fi
+else
+	echo "school file does not exist"
+fi
