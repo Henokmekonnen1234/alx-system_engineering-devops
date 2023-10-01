@@ -10,8 +10,7 @@ do
 	if [ $min -eq 59 ]; then
 
 		if [ $hr -eq 12 ]; then
-			hr=0
-			echo "Hour: $hr"
+			break
 		else
 			(( hr += 1 ))
 			echo "Hour: $hr"
