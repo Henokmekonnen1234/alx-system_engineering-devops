@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# this code will connect our computer to the remote server
+ssh -v ubuntu@52.201.221.223
