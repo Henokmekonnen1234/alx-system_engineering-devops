@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # this command used to generate a key and set the bit to 4096
 # with the passphrase "betty"
-ssh-keygen -t rsa -b 4096 -f "~/.ssh/school" -N "betty"
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/school -N "betty"
