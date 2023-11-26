@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# this will hold the path for the private key
-private_key="~/.ssh/school"
 # this will connect with the remote server using ssh connection protocol
 # and private_key path which is the key
-ssh -i "$private_key" ubuntu@34.237.91.161
+ssh -i ~/.ssh/school ubuntu@52.201.221.223
