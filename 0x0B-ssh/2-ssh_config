@@ -1,3 +1,5 @@
-#!/usr/bin/env bash
-# this code will connect our computer to the remote server
-ssh -v -i ~/.ssh/school ubuntu@52.201.221.223
+Host alxstudentserver
+    Hostname 52.201.221.223
+    User ubuntu
+    Identifyfile ~/.ssh/school
+    PasswordAuthentication no
