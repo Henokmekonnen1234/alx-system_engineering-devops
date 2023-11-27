@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 #this code will install nginx and check with curl
 sudo apt-get -y install nginx
-curl 52.201.221.223
