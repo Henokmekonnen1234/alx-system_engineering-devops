@@ -22,3 +22,5 @@ sudo sh -c 'echo "server{
 }" > etc/nginx/sites-avaliable/default'
 #restart nginx
 sudo service nginx restart
+#curl
+curl 52.201.221.223
