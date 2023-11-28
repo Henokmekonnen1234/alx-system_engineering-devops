@@ -5,7 +5,8 @@ sudo apt-get update
 sudo apt-get install -y nginx
 #this will write the output of the file
 echo "Hello World!" | sudo tee /var/www/html/index.html
-#this will create 301 redirect link
+#this will create 404 html page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 #this will change the config file
 sudo sh -c 'echo "server{
         listen 80;
@@ -16,8 +17,14 @@ sudo sh -c 'echo "server{
                 index idex.html
         }
 
-	location /redirect_me {
-		rewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        location /redirect_me {
+                rewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+
+	error_page 404 404.html;
+	location = /404.html {
+		root /var/www/html/404.html;
+		internal;
 	}
 }" > etc/nginx/sites-avaliable/default'
 #restart nginx
