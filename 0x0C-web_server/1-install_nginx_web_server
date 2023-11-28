@@ -1,3 +1,19 @@
 #!/usr/bin/env bash
+#it will update the file
+sudo apt-get update
 #this code will install nginx and check with curl
-su apt-get install -y nginx
+sudo apt-get install -y nginx
+#this will write the output of the file
+echo "<html><head></head><body><h1>Hello World!</h1></body></html>" | sudo tee /var/www/html/index.html
+#this will change the config file 
+sudo sh -c 'echo "server{
+	listen 80;
+	server_name 52.201.221.223;
+
+	location / {
+		root /var/www/html;
+		index idex.html
+	}
+}" > etc/nginx/sites-avaliable/default'
+#restart nginx
+sudo service nginx restart
