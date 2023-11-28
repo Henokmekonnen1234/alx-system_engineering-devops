@@ -4,7 +4,7 @@ sudo apt-get update
 #this code will install nginx and check with curl
 sudo apt-get install -y nginx
 #this will write the output of the file
-echo "<html><head></head><body><h1>Hello World!</h1></body></html>" | sudo tee /var/www/html/index.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
 #this will change the config file 
 sudo sh -c 'echo "server{
 	listen 80;
@@ -17,3 +17,5 @@ sudo sh -c 'echo "server{
 }" > etc/nginx/sites-avaliable/default'
 #restart nginx
 sudo service nginx restart
+#curl
+curl 52.201.221.223
