@@ -1,5 +1,5 @@
 # installes the flask from pip
-package  {'flask-2.1.0':
-  ensure   => 'installed',
+iipackage  {'flask':
+  ensure   => '2.1.0',
   provider => 'pip3',
 }
