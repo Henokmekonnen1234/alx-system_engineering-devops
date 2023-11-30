@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir "$1"
+touch "$1/README.md"
+echo "$2" > "$1/README.md"
+cp makefile gitpush "$1"
+cd "$1" || exit
