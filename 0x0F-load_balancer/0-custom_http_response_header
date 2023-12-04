@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2059
+disable=SC2236
 #file path to the nginx default file
 nginx_config="/etc/nginx/sites-available/default"
 #header name
