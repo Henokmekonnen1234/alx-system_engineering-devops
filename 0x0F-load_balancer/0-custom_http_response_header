@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#file path to the nginx default file
+nginx_config="/etc/nginx/sites-available/default"
+#header name
+header_name="X-Served-By"
+#hostname
+hostname=$(hostname)
+#this will add the header file in to the configfile
+sed -i "/server_name/ a \ \n add_header ${header_name} ${hostname}" "${nginx_config}"
+#this will restart the nginx
+sudo systemctl restart nginx
+
