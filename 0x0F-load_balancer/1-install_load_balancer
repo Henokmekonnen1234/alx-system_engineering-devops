@@ -30,8 +30,8 @@ frontend myapp
     default_backend servers
 
 backend servers
-    server server1 59968-web-01:80
-    server server2 59968-web-02	:80
+    server server1 52.201.221.223:80
+    server server2 54.146.58.163:80
 ' > /etc/haproxy/haproxy.cfg"
 #restart the haproxy service
 sudo service haproxy restart
