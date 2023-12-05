@@ -7,6 +7,6 @@ header_name="X-Served-By"
 #hostname
 hostname=$(hostname)
 #this will create snippet file
-echo "add_header ${header_name} \"${hostname}\";" | sudo tee /etc/nginx/snippets/header-conf > /dev/null
+echo "add_header ${header_name} \"${hostname}\";" | sudo tee /etc/nginx/snippets/header-conf.conf > /dev/null
 #this will add the header file in to the configfile
-sudo bash -c "echo 'include snippets/header-conf;' >> ${nginx_config}"
+sudo bash -c "echo 'include snippets/header-conf.conf;' >> ${nginx_config}"
