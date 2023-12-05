@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#install HAproxy
+sudo apt-get install -y haproxy
+#create haproxy config file
+sudo touch /etc/haproxy/haproxy.cfg
+#write config file on it
+sudo bash -c "echo '
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log global
+    mode http
+    balance roundrobin
+    option httplog
+    option dontlognull
+    timeout connect 5000
+    timeout client 50000
+    timeout server 50000
+
+frontend myapp
+    bind *:80
+    default_backend servers
+
+backend servers
+    server server1 59968-web-01:80
+    server server2 59968-web-02	:80
+' > /etc/haproxy/haproxy.cfg"
+#restart the haproxy service
+sudo service haproxy restart
