@@ -4,10 +4,10 @@ package { 'nginx':
 }
 
 # Define a location block with a custom header
-nginx::resource::location { 'example_location':
+nginx::resource::location { '/etc/nginx/sites-available/default':
   location   => '/',
   add_header => {
-    'Custom-Header' => 'Your-Header-Value',
+    'X-Served-By' => $::hostname,
   },
 }
 
