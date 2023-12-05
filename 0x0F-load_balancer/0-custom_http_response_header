@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2059
-disable=SC2236
 #file path to the nginx default file
 nginx_config="/etc/nginx/sites-available/default"
 #header name
 header_name="X-Served-By"
 #hostname
 hostname=$(hostname)
+#this will create snippet file
+echo "add_header ${header_name} \"${hostname}\";" | sudo tee /etc/nginx/snippets/header-conf > /dev/null
 #this will add the header file in to the configfile
-sudo sed -i "/server_name/ a \ \n add_header ${header_name} ${hostname}" "${nginx_config}"
+sudo bash -c "echo 'include snippets/header-conf;' >> ${nginx_config}"
