@@ -17,7 +17,7 @@ audit_subdomains() {
   # Iterate through subdomains
   for subdomain in "${subdomains[@]}"; do
     # Retrieve DNS information
-    dns_info=$(dig +short $subdomain.$domain)
+    dns_info=$(dig +short "$subdomain"."$domain")
 
     # Determine record type and destination
     if [ -n "$dns_info" ]; then
@@ -37,7 +37,7 @@ if [ "$#" -eq 1 ]; then
 elif [ "$#" -eq 2 ]; then
   # When both domain and subdomain parameters are provided
   subdomain="$2"
-  dns_info=$(dig +short $subdomain.$1)
+  dns_info=$(dig +short "$subdomain"."$1")
   if [ -n "$dns_info" ]; then
     record_type=$(echo "$dns_info" | awk 'NR==1{print "A"} NR>1{print "CNAME"}')
     destination=$(echo "$dns_info" | awk 'NR==1{print $1} NR>1{print $1}')
