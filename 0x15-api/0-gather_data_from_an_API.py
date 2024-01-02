@@ -23,10 +23,10 @@ with get(url_1, params=value[1]) as response, get(url_2, params=value[2]) as u:
 
 if value:
     for todos in value:
-        if todos["completed"] == True:
+        if todos["completed"] is True:
             count += 1
     print("Employee {} is done with tasks({}/{}):".format(
           user[0].get("name"), count, len(value)))
     for todos in value:
-        if todos.get("completed") == True:
+        if todos.get("completed") is True:
             print(" \t{}".format(todos.get("title")))
