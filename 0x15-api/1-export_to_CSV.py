@@ -24,11 +24,10 @@ if __name__ == "__main__":
     if value:
         with open("{}.csv".format(user[0].get("id")), "w", newline="") \
              as file:
-            fieldname = ["USER_ID","USERNAME","TASK_COMPLETED_STATUS",\
-                         "TASK_TITLE"]
+            fieldname = ["userId", "name", "completed", "title"]
             csv_file = DictWriter(file, fieldname)
             for content in value:
-                csv_file.writer.writerow([str(user[0].get("id")), user\
-                                         [0].get("name"), content.get(\
-                                         "completed"), content.get(\
-                                         "title")])
+                csv_file.writer.writerow([str(user[0].get("id")), user
+                                          [0].get("name"), content.get(
+                                          "completed"), content.get(
+                                          "title")])
