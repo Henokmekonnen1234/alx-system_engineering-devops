@@ -14,8 +14,8 @@ if __name__ == "__main__":
     url_2 = "https://jsonplaceholder.typicode.com/users/"
     value = {1: {"userId": argv[1]}, 2: {"id": argv[1]}}
     count = 0
-    with get(url_1, params=value.get(1)) as response,\
-    get(url_2, params=value.get(2)) as u:
+    with get(url_1, params=value.get(1)) as response, \
+         get(url_2, params=value.get(2)) as u:
         if response.status_code == 200 and u.status_code == 200:
             value = loads(response.text)
             user = loads(u.text)
