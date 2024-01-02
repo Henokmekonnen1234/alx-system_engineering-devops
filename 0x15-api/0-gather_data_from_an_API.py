@@ -6,15 +6,16 @@ returns information about his/her TODO list progress.
 """
 
 if __name__ == "__main__":
-    from requests import get
+    from json import loads
     from sys import argv
-    from json import loads, load
-    
+    from requests import get
+
     url_1 = "https://jsonplaceholder.typicode.com/todos/"
     url_2 = "https://jsonplaceholder.typicode.com/users/"
     value = {1: {"userId": argv[1]}, 2: {"id": argv[1]}}
     count = 0
-    with get(url_1, params=value[1]) as response, get(url_2, params=value[2]) as u:
+    with get(url_1, params=value.get(1)) as response,\
+    get(url_2, params=value.get(2)) as u:
         if response.status_code == 200 and u.status_code == 200:
             value = loads(response.text)
             user = loads(u.text)
@@ -22,10 +23,10 @@ if __name__ == "__main__":
             value = {}
     if value:
         for todos in value:
-            if todos["completed"] is True:
+            if todos.get("completed") is True:
                 count += 1
         print("Employee {} is done with tasks({}/{}):".format(
               user[0].get("name"), count, len(value)))
         for todos in value:
             if todos.get("completed") is True:
-                print(" \t{}".format(todos.get("title")))
+                print("     {}".format(todos.get("title")))
