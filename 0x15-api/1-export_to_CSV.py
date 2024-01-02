@@ -28,6 +28,6 @@ if __name__ == "__main__":
             csv_file = DictWriter(file, fieldname)
             for content in value:
                 csv_file.writer.writerow([str(user[0].get("id")), user
-                                          [0].get("name").split(" ")[0],
+                                          [0].get("name").split(" ")[1],
                                           content.get("completed"),
                                           content.get("title")])
