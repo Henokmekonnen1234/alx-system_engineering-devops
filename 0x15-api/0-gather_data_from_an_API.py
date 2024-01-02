@@ -29,4 +29,4 @@ if __name__ == "__main__":
               user[0].get("name"), count, len(value)))
         for todos in value:
             if todos.get("completed") is True:
-                print("     {}".format(todos.get("title")))
+                print("\t {}".format(todos.get("title")))
