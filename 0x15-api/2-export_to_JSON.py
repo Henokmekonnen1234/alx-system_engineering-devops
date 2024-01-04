@@ -15,10 +15,10 @@ if __name__ == "__main__":
          get(url + "todos/", params={"userId": argv[1]}) as todos:
         users = loads(user.text)
         value = loads(todos.text)
-        values = {"\"{}\"".format(users[0].get("id")): []}
+        dict_val = {f"{argv[1]}": []}
         for todo in value:
-            values.get("\"{}\"".format(users[0].get("id")))\
-                  .append({"task": todo.get("title"), "completed":
-                           todo.get("completed"), "username":
-                           users[0].get("username")})
-            file.write(dumps(values))
+            dict_val.get(f"{argv[1]}").append({"task": todo.get("title"),
+                                               "comleted": todo.get("\
+                                               completed"), "username":
+                                               users[0].get("username")})
+        file.write(dumps(dict_val))
