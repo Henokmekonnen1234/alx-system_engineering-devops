@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Module 2-export_to_JSON.py
+
 Python script to export data in the JSON format.
 """
 
