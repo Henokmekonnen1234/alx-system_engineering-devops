@@ -23,6 +23,6 @@ if __name__ == "__main__":
         with open("{}.csv".format(user[0].get("id")), "w", newline="") \
              as csv_file:
             for todo in value:
-                csv_file.write("\"{}\",\"{}\",\"{}\",\"{}\"".format(user\
-                               [0].get("id"), user[0].get("username"),
+                csv_file.write("\"{}\",\"{}\",\"{}\",\"{}\"\n".format(
+                               user[0].get("id"), user[0].get("username"),
                                todo.get("completed"), todo.get("title")))
