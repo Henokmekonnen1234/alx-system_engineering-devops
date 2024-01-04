@@ -6,16 +6,14 @@ will export data in the CSV format.
 """
 
 if __name__ == "__main__":
-    from csv import DictWriter
     from json import loads
     from requests import get
     from sys import argv
 
-    url_1 = "https://jsonplaceholder.typicode.com/todos/"
-    url_2 = "https://jsonplaceholder.typicode.com/users/"
+    url = "https://jsonplaceholder.typicode.com/"
     value = {1: {"userId": argv[1]}, 2: {"id": argv[1]}}
-    with get(url_1, params=value.get(1)) as response, \
-         get(url_2, params=value.get(2)) as u:
+    with get(url + "/todos/", params=value.get(1)) as response, \
+         get(url + "/users/", params=value.get(2)) as u:
         if response.status_code == 200 and u.status_code == 200:
             value = loads(response.text)
             user = loads(u.text)
@@ -23,11 +21,8 @@ if __name__ == "__main__":
             value = {}
     if value:
         with open("{}.csv".format(user[0].get("id")), "w", newline="") \
-             as file:
-            fieldname = ["userId", "username", "completed", "title"]
-            csv_file = DictWriter(file, fieldname)
-            for content in value:
-                csv_file.writer.writerow([str(user[0].get("id")), user
-                                          [0].get("username"),
-                                          content.get("completed"),
-                                          content.get("title")])
+             as csv_file:
+            for todo in value:
+                csv_file.write("\"{}\",\"{}\",\"{}\",\"{}\"".format(user\
+                               [0].get("id"), user[0].get("username"),
+                               todo.get("completed"), todo.get("title")))
