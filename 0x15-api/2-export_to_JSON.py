@@ -16,9 +16,12 @@ if __name__ == "__main__":
         users = loads(user.text)
         value = loads(todos.text)
         dict_val = {f"{argv[1]}": []}
+        count = 0
         for todo in value:
             dict_val.get(f"{argv[1]}").append({"task": todo.get("title"),
                                                "completed": todo.get(
                                                "completed"), "username":
                                                users[0].get("username")})
+            count += 1
+        print("tasks ", count)
         file.write(dumps(dict_val))
