@@ -13,15 +13,11 @@ if __name__ == "__main__":
     with open("{}.json".format(argv[1]), "w+") as file, \
          get(url + "users/", params={"id": argv[1]}) as user, \
          get(url + "todos/", params={"userId": argv[1]}) as todos:
-        users = loads(user.text)
-        value = loads(todos.text)
         dict_val = {f"{argv[1]}": []}
-        count = 0
-        for todo in value:
+        for todo in todos.json():
             dict_val.get(f"{argv[1]}").append({"task": todo.get("title"),
                                                "completed": todo.get(
                                                "completed"), "username":
-                                               users[0].get("username")})
-            count += 1
-        print("tasks ", count)
+                                               user.json()[0].get(
+                                               "username")})
         file.write(dumps(dict_val))
