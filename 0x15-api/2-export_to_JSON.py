@@ -18,7 +18,7 @@ if __name__ == "__main__":
         dict_val = {f"{argv[1]}": []}
         for todo in value:
             dict_val.get(f"{argv[1]}").append({"task": todo.get("title"),
-                                               "comleted": todo.get("\
-                                               completed"), "username":
+                                               "completed": todo.get(
+                                               "completed"), "username":
                                                users[0].get("username")})
         file.write(dumps(dict_val))
