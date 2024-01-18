@@ -1,23 +1,19 @@
 #!/usr/bin/python3
-"""
-Module 1-top_ten.py
+''' task 1 module'''
 
-This function will print top ten hot posts
-"""
-
-from requests import get
+import requests
+import sys
 
 
 def top_ten(subreddit):
-    """this function will print top ten hot posts"""
-    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    header = {"UserAgent": "CustomUserAgent"}
-    try:
-        with get(url, headers=header) as response:
-            if response.status_code == 200:
-                for data in response.json()["data"]["children"]:
-                    print(data["data"]["title"])
-            else:
-                pass
-    except Exception as e:
-        pass
+    '''gets 10 hottest posts of a subreddit'''
+    headers = {'User-agent': 'test23'}
+    url = 'https://www.reddit.com/r/'
+    posts = requests.get(url + '{}/hot.json?limit=10'.format(
+        sys.argv[1]), allow_redirects=False, headers=headers)
+
+    if posts.status_code == 200:
+        for post in posts.json()['data']['children']:
+            print(post['data']['title'])
+    else:
+        print(None)
