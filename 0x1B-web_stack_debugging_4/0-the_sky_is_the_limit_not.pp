@@ -1,6 +1,24 @@
-# fixes Number of failed requests
+# Puppet class: profile::nginx
+# This class manages the installation and configuration of Nginx.
 
-exec { 'fix--for-nginx':
-  command => "sed -i 's/worker_processes 4;/worker_processes 7;/g' /etc/nginx/nginx.conf; sudo service nginx restart",
-  path    => ['/bin', '/usr/bin', '/usr/sbin']
+
+class profile::nginx {
+  package { 'nginx':
+    ensure => installed,
+  }
+
+  file { '/etc/nginx/nginx.conf':
+    ensure  => file,
+    source  => 'puppet:///modules/profile/nginx/nginx.conf',
+    content => template('profile/nginx/nginx.conf.erb'),
+    require => Package['nginx'],
+    notify  => Service['nginx'],
+  }
+
+  service { 'nginx':
+    ensure  => running,
+    enable  => true,
+    require => Package['nginx'],
+  }
 }
+
