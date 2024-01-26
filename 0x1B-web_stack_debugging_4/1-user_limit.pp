@@ -1,30 +1,9 @@
-# Puppet Manifest to configure OS for holberton user
-
-user { 'holberton':
-  ensure => present,
-  shell  => '/bin/bash',
+# OS configuration user limit
+exec { 'Correct hard':
+  command  => 'sudo sed -i \'s/nofile 5/nofile 30000/\' /etc/security/limits.conf',
+  provider => shell,
 }
-
-file { '/home/holberton':
-  ensure  => 'directory',
-  owner   => 'holberton',
-  group   => 'holberton',
-  mode    => '0755',
-  recurse => true,
+exec { 'Correct soft':
+  command  => 'sudo sed -i \'s/nofile 4/nofile 10000/\' /etc/security/limits.conf',
+  provider => shell,
 }
-
-file { '/home/holberton/.ssh':
-  ensure  => 'directory',
-  owner   => 'holberton',
-  group   => 'holberton',
-  mode    => '0700',
-}
-
-file { '/home/holberton/.ssh/authorized_keys':
-  ensure  => 'file',
-  owner   => 'holberton',
-  group   => 'holberton',
-  mode    => '0600',
-  content => 'your_ssh_public_key_here',
-}
-
