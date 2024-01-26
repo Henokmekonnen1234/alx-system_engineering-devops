@@ -1,42 +1,30 @@
-# Apply this manifest to configure the OS for the holberton user
+# Puppet Manifest to configure OS for holberton user
 
-# Create holberton user
 user { 'holberton':
   ensure => present,
-  home   => '/home/holberton',
   shell  => '/bin/bash',
 }
 
-# Allow passwordless sudo for holberton user
-file { '/etc/sudoers.d/holberton':
-  ensure  => present,
-  content => 'holberton ALL=(ALL:ALL) NOPASSWD:ALL',
-}
-
-# Set permissions on /home/holberton directory
 file { '/home/holberton':
-  ensure  => directory,
+  ensure  => 'directory',
   owner   => 'holberton',
   group   => 'holberton',
   mode    => '0755',
-  require => User['holberton'],
+  recurse => true,
 }
 
-# Apply custom configuration to /etc/ssh/sshd_config
-file { '/etc/ssh/sshd_config':
-  ensure  => present,
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  content => template('profile/ssh/sshd_config.erb'),
-  notify  => Service['sshd'],
+file { '/home/holberton/.ssh':
+  ensure  => 'directory',
+  owner   => 'holberton',
+  group   => 'holberton',
+  mode    => '0700',
 }
 
-# Restart SSH service when sshd_config is modified
-service { 'sshd':
-  ensure     => running,
-  enable     => true,
-  hasrestart => true,
-  subscribe  => File['/etc/ssh/sshd_config'],
+file { '/home/holberton/.ssh/authorized_keys':
+  ensure  => 'file',
+  owner   => 'holberton',
+  group   => 'holberton',
+  mode    => '0600',
+  content => 'your_ssh_public_key_here',
 }
 
