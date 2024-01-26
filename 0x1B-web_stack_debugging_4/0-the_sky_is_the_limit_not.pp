@@ -1,24 +1,6 @@
-# Puppet class: profile::nginx
-# This class manages the installation and configuration of Nginx.
+# Fix Nginx "accept4() failed (24: Too many open files)" message when simulting user requests
 
-
-class profile::nginx {
-  package { 'nginx':
-    ensure => installed,
-  }
-
-  file { '/etc/nginx/nginx.conf':
-    ensure  => file,
-    source  => 'puppet:///modules/profile/nginx/nginx.conf',
-    content => template('profile/nginx/nginx.conf.erb'),
-    require => Package['nginx'],
-    notify  => Service['nginx'],
-  }
-
-  service { 'nginx':
-    ensure  => running,
-    enable  => true,
-    require => Package['nginx'],
-  }
+exec {'modify max open files limit setting':
+  command => 'sed -i "s/15/10000/" /etc/default/nginx && sudo service nginx restart',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',
 }
-
